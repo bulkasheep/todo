@@ -1,0 +1,135 @@
+:root {
+    --add-icon: url("./assets/icons/Add.svg") no-repeat 13px center;
+    --delete-icon: url("./assets/icons/Delete.svg") no-repeat center center;
+    --blue: #1D85FF;
+    --blue-hover: #56A4FF;
+    --red: #FF5858;
+    --red-hover: #FF7575;
+}
+
+.input {
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    border-radius: 8px;
+    padding: 10.32px 13px;
+    flex-grow: 1;
+}
+
+.button {
+    color: #FFFFFF;
+    font-weight: 500;
+    line-height: 19.36px;
+    padding: 10.32px 13px;
+    border-radius: 8px;
+    transition: background-color 0.5s ease;
+}
+
+.button.back {
+    background: var(--red);
+}
+
+.button.back:hover {
+    background: var(--red-hover);
+}
+
+.button.add {
+    background: var(--blue) var(--add-icon);
+    padding-left: 46px;
+    text-align: right;
+}
+.button.add:hover {
+    background: var(--blue-hover) var(--add-icon);
+}
+
+.button.delete {
+    width: 30px;
+    height: 30px;
+    background: var(--red) var(--delete-icon);
+}
+
+.button.delete:hover {
+    background: var(--red-hover) var(--delete-icon);
+}
+
+.radiobutton {
+    cursor: pointer;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: 2px solid var(--blue);
+    border-radius: 50%;
+    outline-offset: -2px;
+}
+
+.radiobutton::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    transition: background 0.5s ease;
+}
+
+.radiobutton:checked::after {
+    background: var(--blue);
+}
+
+.radiobutton:hover::after,
+.radiobutton:checked:hover::after {
+    background: var(--blue-hover);
+}
+.radiobutton:focus {
+    outline: 2px solid var(--blue);
+}
+.radiobutton:checked:focus {
+    outline: 2px solid var(--blue);
+}
+
+.checkbox {
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    outline: 1px solid #000000;
+    outline-offset: -1px;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: background 0.5s ease;
+}
+
+.checkbox:hover {
+    outline-color: var(--blue-hover);
+}
+.checkbox:hover,
+.checkbox:checked:hover {
+    background: var(--blue-hover);
+}
+.checkbox:checked {
+    background: var(--blue);
+    outline: none;
+}
+.checkbox:checked::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 7px;
+    width: 16px;
+    height: 10px;
+    border: 0px solid #FFFFFF;
+    border-width: 0 0 4px 4px;
+    transform: rotate(-45deg);
+}
+.checkbox:focus {
+    outline: 1px solid #000000;
+}
+.checkbox:checked:focus {
+    outline: none;
+}

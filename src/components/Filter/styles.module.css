@@ -1,0 +1,17 @@
+.heading {
+    font-weight: 500;
+}
+
+.list {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.list_item {
+    font-weight: 500;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 4px;
+}
