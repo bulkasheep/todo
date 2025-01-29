@@ -1,23 +1,26 @@
-
-import { useState } from 'react';
+import { getStoredValue, removeStoredValue } from '../../localStorage';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import inputs from '../../inputs.module.css';
+import { useState } from 'react';
 
-function Task({ task, isInList = false, onChange, onDeleting }) {
-    const [data, setData] = useState({ ...task });
 
-    const handleChanging = (event) => {
-        const t = {
+function Task({ taskKey, isInList = false, onChange, onDelete }) {
+    const storedValue = getStoredValue(taskKey);
+    const [data, setData] = useState(storedValue);
+
+    const handleChange = (event) => {
+        const changedTask = {
             ...data,
             isDone: event.target.checked
         };
-        setData(t);
-        onChange(t);
+        onChange(changedTask);
+        setData(changedTask);
     };
 
-    const handleDeleting = () => {
-        onDeleting(data.id);
+    const handleDelete = () => {
+        if (isInList) onDelete(data.key);
+        else removeStoredValue(data.key);
     };
 
     if (isInList) {
@@ -26,13 +29,13 @@ function Task({ task, isInList = false, onChange, onDeleting }) {
                 <input type="checkbox"
                     checked={data.isDone}
                     className={inputs.checkbox}
-                    onChange={handleChanging} />
-                <Link to={`/${data.id}`}
+                    onChange={handleChange} />
+                <Link to={`/${data.key}`}
                     className={styles.title}>
                     {data.title}
                 </Link>
                 <button className={`${inputs.button} ${inputs.delete}`}
-                    onClick={handleDeleting} />
+                    onClick={handleDelete} />
             </>
         );
     }
@@ -45,8 +48,9 @@ function Task({ task, isInList = false, onChange, onDeleting }) {
             <span className={styles.title}>
                 {data.title}
             </span>
-            <button className={`${inputs.button} ${inputs.delete}`}
-                onClick={handleDeleting} />
+            <Link to="/"
+                className={`${inputs.button} ${inputs.delete}`}
+                onClick={handleDelete} />
         </div>
     );
 }

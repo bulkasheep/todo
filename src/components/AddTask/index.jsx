@@ -2,13 +2,22 @@ import { useState } from 'react';
 import styles from './styles.module.css';
 import inputs from '../../inputs.module.css';
 
-function AddTask({ onAdding }) {
+
+function AddTask({ onAdd }) {
     const [title, setTitle] = useState("");
 
-    const handleAdding = () => {
-        onAdding(title);
+    const handleAdd = () => {
+        onAdd(title);
         setTitle("");
-    }
+    };
+
+    const onChange = (event) => {
+        setTitle(event.target.value)
+    };
+
+    const onKeyDown = (event) => {
+        if (event.key === "Enter" && title !== "") handleAdd();
+    };
 
     return (
         <div className={styles.container}>
@@ -18,11 +27,9 @@ function AddTask({ onAdding }) {
             <input type="text"
                 value={title}
                 className={inputs.input}
-                onChange={e => setTitle(e.target.value)} onKeyDown={(event) => {
-                    if (event.key === "Enter" && title !== "") handleAdding();
-                }} />
+                onChange={onChange} onKeyDown={onKeyDown} />
             <button className={`${inputs.button} ${inputs.add}`}
-                onClick={handleAdding}>
+                onClick={handleAdd}>
                 Добавить
             </button>
         </div>
